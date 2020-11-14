@@ -594,7 +594,7 @@ class RuleFit(BaseEstimator, TransformerMixin):
                 rkx = rule.transform(subregion)
                 importance = sum(abs(coef) * abs(rkx - rule.support))/len(subregion)
 
-            output_rules += [(rule.__str__(), 'rule', coef,  rule.support, importance)]
+            output_rules += [(rule, 'rule', coef,  rule.support, importance)]
         rules = pd.DataFrame(output_rules, columns=["rule", "type","coef", "support", "importance"])
         if exclude_zero_coef:
             rules = rules.ix[rules.coef != 0]
